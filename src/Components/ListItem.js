@@ -24,6 +24,7 @@ function ListItem({ product, onQuantityChange, onRemoveProduct }) {
                         defaultValue={product.quantity}
                         onChange={(e) => {
                             onQuantityChange(e.target.value, product.name);
+                            alert(product.name);
                         }}
                     />
                 </div>

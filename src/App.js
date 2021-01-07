@@ -3,25 +3,10 @@ import Header from "./Components/Header";
 import Checkout from "./Components/Checkout";
 import ListItem from "./Components/ListItem";
 import { useState } from "react";
+import { PRODUCTS } from "./data";
 
-const products = [
-    {
-        img: "/apple.jpg",
-        name: "app",
-        description: "Delicious apple",
-        price: 10,
-        quantity: 3,
-    },
-    {
-        img: "/apple.jpg",
-        name: "",
-        description: "Delicious apple",
-        price: 5,
-        quantity: 2,
-    },
-];
 function App() {
-    const [product, setProduct] = useState(products);
+    const [product, setProduct] = useState(PRODUCTS);
     const onHandleChange = (newQuantity, productName) => {
         const newProducts = product.map((products) => {
             if (products.name !== productName) {
@@ -37,8 +22,8 @@ function App() {
         setProduct(newProducts);
     };
 
-    const Getprice = products.map((x) => x.quantity);
-    const priceItem = products.map((x) => x.quantity * x.price);
+    const Getprice = PRODUCTS.map((x) => x.quantity);
+    const priceItem = PRODUCTS.map((x) => x.quantity * x.price);
 
     const subTotal = priceItem.reduce(
         (accumulator, currentValue) => accumulator + currentValue
@@ -58,10 +43,11 @@ function App() {
             <Header totalItems={totalQuantity}></Header>
             <section className="container">
                 <ul className="products">
-                    {products.map((product) => (
+                    {PRODUCTS.map((product) => (
                         <ListItem
                             key={product.name}
                             product={product}
+                            name={product.name}
                             onQuantityChange={onHandleChange}
                             onRemoveProduct={removeProduct}
                         />
