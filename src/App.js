@@ -3,27 +3,30 @@ import Header from "./Components/Header";
 import Checkout from "./Components/Checkout";
 import ListItem from "./Components/ListItem";
 import { useState } from "react";
-import { PRODUCTS } from "./data";
+import { PRODUCTS, DISCOUNTS } from "./data";
 
 function App() {
-    const [product, setProduct] = useState(PRODUCTS);
+    const [products, setProducts] = useState(PRODUCTS);
+
+    const [discounts, setDiscounts] = useState(DISCOUNTS);
+
     const onHandleChange = (newQuantity, productName) => {
-        const newProducts = product.map((products) => {
+        const newProducts = products.map((products) => {
             if (products.name !== productName) {
-                return product;
+                return products;
             }
             const newProduct = {
-                ...product,
+                ...products,
                 quantity: parseInt(newQuantity),
             };
 
             return newProduct;
         });
-        setProduct(newProducts);
+        setProducts(newProducts);
     };
 
-    const Getprice = PRODUCTS.map((x) => x.quantity);
-    const priceItem = PRODUCTS.map((x) => x.quantity * x.price);
+    const Getprice = products.map((x) => x.quantity);
+    const priceItem = products.map((x) => x.quantity * x.price);
 
     const subTotal = priceItem.reduce(
         (accumulator, currentValue) => accumulator + currentValue
@@ -33,9 +36,13 @@ function App() {
         (accumulator, currentValue) => accumulator + currentValue
     );
     function removeProduct(name) {
-        setProduct((products) =>
+        setProducts((products) =>
             products.filter((product) => product.name !== name)
         );
+    }
+
+    function discount(discount) {
+        alert("abc");
     }
 
     return (
@@ -43,7 +50,7 @@ function App() {
             <Header totalItems={totalQuantity}></Header>
             <section className="container">
                 <ul className="products">
-                    {PRODUCTS.map((product) => (
+                    {products.map((product) => (
                         <ListItem
                             key={product.name}
                             product={product}
@@ -57,6 +64,8 @@ function App() {
             <Checkout
                 onclickCheckout={() => alert("check out")}
                 subTotal={subTotal}
+                discounts={discounts}
+                getDiscount={discount}
             ></Checkout>
         </div>
     );

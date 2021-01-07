@@ -14,3 +14,14 @@ export const PRODUCTS = [
         quantity: 2,
     },
 ];
+
+export const DISCOUNTS = [
+    {
+        code: "abcd",
+        discount: "10%",
+    },
+    {
+        code: "abcde",
+        discount: "20%",
+    },
+];

@@ -24,7 +24,6 @@ function ListItem({ product, onQuantityChange, onRemoveProduct }) {
                         defaultValue={product.quantity}
                         onChange={(e) => {
                             onQuantityChange(e.target.value, product.name);
-                            alert(product.name);
                         }}
                     />
                 </div>
@@ -41,7 +40,6 @@ function ListItem({ product, onQuantityChange, onRemoveProduct }) {
                         xmlSpace="preserve"
                         onClick={() => {
                             onRemoveProduct(product.name);
-                            alert(product.name);
                         }}
                     >
                         <polygon points="38.936,23.561 36.814,21.439 30.562,27.691 24.311,21.439 22.189,23.561 28.441,29.812 22.189,36.064 24.311,38.186 30.562,31.934 36.814,38.186 38.936,36.064 32.684,29.812" />
